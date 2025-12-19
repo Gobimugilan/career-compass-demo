@@ -297,20 +297,19 @@ def generate_qr(url):
 # --- 5. MAIN APP ---
 def main():
     
-    # --- SIDEBAR FOR QR CODE ---
+  # --- SIDEBAR FOR QR CODE ---
     with st.sidebar:
         st.header("📱 Scan to Play")
-        st.write("Enter your **Network URL** (from terminal) below to generate a QR for the Judges:")
+        st.write("Scan this to open the app on your phone:")
         
-        # Default instruction
-        url_input = st.text_input("App URL:", "http://192.168.x.x:8501")
+        # PASTE YOUR NEW LINK HERE AS THE DEFAULT
+        url_input = st.text_input("App URL:", "https://career-compass-demo-5qkuzf9irhgypuccsvx4fu.streamlit.app/")
         
         if url_input:
             qr_img = generate_qr(url_input)
-            # Convert PIL image to display in Streamlit
             buf = BytesIO()
             qr_img.save(buf)
-            st.image(buf, caption="Scan this with Phone", use_container_width=True)
+            st.image(buf, caption="Scan to Open", use_container_width=True)
         
 
     # HEADER
@@ -428,4 +427,5 @@ def main():
         st.download_button("Download Report", mock_data.to_csv(), "class_report.csv")
 
 if __name__ == "__main__":
+
     main()
